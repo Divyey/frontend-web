@@ -60,11 +60,13 @@ If necessary, update the base URL in the frontend code (likely in a file like `a
 
 📁 **Folder Structure (Quick Glance)**
 
+public/index.html → The HTML template used by React
 - `components/`       --> All reusable components
-- `pages/`            --> Login, Register, Dashboard, etc.
-- `App.js`            --> Main app file
-- `index.js`          --> Entry point for React
-
+- `CreateArea.jsx, Note.jsx, Header.jsx, Footer.jsx, etc.`
+- `App.jsx`            --> Main app component where everything ties together
+- `index.js`          --> Entry point of the React application
+- `api.js`          --> API handling (e.g., Axios config)
+- `App.css & index.css`          --> Styling
 The structure is simple and clean, designed to help you understand and extend the codebase easily.
 
 ❗ **Heads Up**
