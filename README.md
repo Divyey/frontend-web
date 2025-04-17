@@ -13,8 +13,8 @@ Hi, this is the frontend of the project named **secure-notes-fullstack**, which 
 Clone this repository if you haven't already:
 
 ```bash
-git clone https://github.com/YourUsername/secure-notes-frontend.git
-cd secure-notes-frontend
+git clone https://github.com/Divyey/frontend-web.git
+cd frontweb
 ```
 
 ### Step 2: Install Node Modules
