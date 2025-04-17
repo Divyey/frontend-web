@@ -1,0 +1,81 @@
+/* LoginForm.css */
+.login-form-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .login-form-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #444;
+  }
+  
+  .form-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .submit-btn {
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #f5ba13;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .submit-btn:hover {
+    background-color: #d49a11;
+  }
+  
+  .response-msg {
+    text-align: center;
+    margin-top: 1rem;
+    color: green;
+  }
+  
+  .toggle-form-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .toggle-form-button {
+    background: none;
+    border: none;
+    color: #f5ba13;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .toggle-form-button:hover {
+    text-decoration: underline;
+  }
+  
