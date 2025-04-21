@@ -35,6 +35,7 @@ const LoginForm = () => {
 
       localStorage.removeItem('access_token');
       localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('username', formData.username); // Store username in localStorage
 
       setResponseMsg('Login successful! Redirecting...');
       setTimeout(() => {

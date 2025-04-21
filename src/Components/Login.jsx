@@ -27,6 +27,7 @@ const Login = () => {
       });
 
       localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('username', formData.username); // Store username in localStorage
       setResponseMsg('Login successful! Redirecting...');
       setTimeout(() => window.location.href = '/dashboard', 1000);
     } catch (error) {
