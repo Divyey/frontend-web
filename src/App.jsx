@@ -9,7 +9,7 @@ import "./App.css";
 
 function App() {
   const token = localStorage.getItem('access_token'); // Check if token exists
-
+  console.log("Success log token!")
   return (
     <div>
       {/* Pass handleLogout to Header so it's available there */}
