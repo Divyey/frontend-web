@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  // Fetch the notes from the API
   const fetchNotes = async () => {
     const token = localStorage.getItem('access_token');
     if (token) {
@@ -18,17 +19,17 @@ const Dashboard = () => {
             Accept: 'application/json',
           },
         });
-
         setNotes(response.data);
       } catch (err) {
-        setError('Error fetching notes.');
+        setError('Error fetching notes. Please try again later.');
       }
     } else {
-      setError('No access token found.');
+      setError('No access token found. Please log in.');
     }
     setLoading(false);
   };
 
+  // Handle deleting a note
   const handleDelete = async (note_id) => {
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -47,9 +48,11 @@ const Dashboard = () => {
       setNotes((prevNotes) => prevNotes.filter((note) => note.note_id !== note_id));
     } catch (err) {
       console.error('Error deleting note:', err);
+      setError('Error deleting the note. Please try again later.');
     }
   };
 
+  // Handle updating a note
   const handleUpdate = async (note_id, updatedNote) => {
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -77,13 +80,16 @@ const Dashboard = () => {
       );
     } catch (err) {
       console.error('Error updating note:', err);
+      setError('Error updating the note. Please try again later.');
     }
   };
 
+  // Fetch notes again after a new note is created
   const handleNoteCreated = () => {
-    fetchNotes(); // Re-fetch notes after a new one is created
+    fetchNotes();
   };
 
+  // Fetch notes on component mount
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -93,12 +99,11 @@ const Dashboard = () => {
 
   return (
     <div>
-
       <CreateArea onNoteCreated={handleNoteCreated} />
 
       <div>
         {notes.length === 0 ? (
-          <p>No notes available.</p>
+          <p>No notes available. Please add a new note.</p>
         ) : (
           notes.map((note) => (
             <Note
@@ -107,7 +112,7 @@ const Dashboard = () => {
               title={note.title}
               content={note.description}
               onDelete={() => handleDelete(note.note_id)}
-              onUpdate={handleUpdate} // Pass update function to Note
+              onUpdate={handleUpdate} // Pass the update function to the Note component
             />
           ))
         )}

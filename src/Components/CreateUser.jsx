@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './LoginForm.css'; // Reuse existing styles
 
 const CreateUser = () => {
   const [userData, setUserData] = useState({
     username: '',
     email: '',
     password: '',
-    role: 'user', // default role
+    role: 'user',
   });
 
   const [message, setMessage] = useState('');
@@ -40,43 +41,60 @@ const CreateUser = () => {
   };
 
   return (
-    <div>
-      <h2>Create New User</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          name="username"
-          type="text"
-          placeholder="Username"
-          value={userData.username}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={userData.email}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={userData.password}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <select name="role" value={userData.role} onChange={handleChange} style={{width:"100%"}}>
-          <option value="user">user</option>
-          <option value="admin">admin</option>
-        </select>
-        <br />
-        <button type="submit">Create User</button>
+    <div className="login-form-container">
+      <h2 className="login-form-title">Create Account</h2>
+      {message && <p className="response-msg">{message}</p>}
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-group">
+          <label className="form-label">Username:</label>
+          <input
+            name="username"
+            type="text"
+            value={userData.username}
+            onChange={handleChange}
+            className="form-input"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Email:</label>
+          <input
+            name="email"
+            type="email"
+            value={userData.email}
+            onChange={handleChange}
+            className="form-input"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Password:</label>
+          <input
+            name="password"
+            type="password"
+            value={userData.password}
+            onChange={handleChange}
+            className="form-input"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Role:</label>
+          <select
+            name="role"
+            value={userData.role}
+            onChange={handleChange}
+            className="form-input"
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <button type="submit" className="submit-btn">Create User</button>
       </form>
     </div>
   );

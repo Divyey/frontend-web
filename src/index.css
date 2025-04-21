@@ -11,3 +11,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.note {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 15px 20px;
+  width: 240px;
+  margin: 16px;
+  float: left;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.note:hover {
+  box-shadow: 0 4px 10px #bbb;
+}
+
+.editable-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  width: 100%;
+  outline: none;
+  background-color: transparent;
+  margin-bottom: 6px;
+  font-family: inherit;
+  color: #333;
+}
+
+.editable-content {
+  font-size: 1rem;
+  line-height: 1.5;
+  border: none;
+  width: 100%;
+  resize: none;
+  outline: none;
+  background-color: transparent;
+  font-family: inherit;
+  color: #555;
+}
+
+.editable-title:focus,
+.editable-content:focus {
+  background-color: #fefefe;
+}
+
+.editable-content {
+  resize: none;
+  overflow: hidden;
+}
+

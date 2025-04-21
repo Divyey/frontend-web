@@ -1,79 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
-//import DeleteIcon from '@mui/icons-material/Delete';
 
 function Note(props) {
-  const [isEditing, setIsEditing] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(props.title);
   const [updatedContent, setUpdatedContent] = useState(props.content);
+  const textareaRef = useRef(null);
 
-  // Handle delete
-  function handleDeleteClick() {
-    props.onDelete(props.id);
-  }
+  // Adjust the height of textarea based on content
+  useEffect(() => {
+    autoResize();
+  }, [updatedContent]);
 
-  // Handle edit
-  function handleEditClick() {
-    setIsEditing(true);
-  }
-
-  // Handle content change during edit
-  function handleContentChange(event) {
-    const { name, value } = event.target;
-    if (name === "title") {
-      setUpdatedTitle(value);
-    } else {
-      setUpdatedContent(value);
+  function autoResize() {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto"; // Reset
+      textarea.style.height = textarea.scrollHeight + "px"; // Set to scroll height
     }
   }
 
-  // Submit the updated note
-  function handleUpdateClick() {
+  function handleTitleChange(event) {
+    setUpdatedTitle(event.target.value);
+  }
+
+  function handleContentChange(event) {
+    setUpdatedContent(event.target.value);
+  }
+
+  function handleBlur() {
     const updatedNote = {
       title: updatedTitle,
       description: updatedContent,
     };
-    props.onUpdate(props.id, updatedNote); // Trigger update from the parent
-    setIsEditing(false); // Exit editing mode
+    props.onUpdate(props.id, updatedNote);
   }
 
-  // Cancel editing
-  function handleCancelEdit() {
-    setUpdatedTitle(props.title);
-    setUpdatedContent(props.content);
-    setIsEditing(false);
+  function handleDeleteClick() {
+    props.onDelete(props.id);
   }
 
   return (
     <div className="note">
-      {isEditing ? (
-        <div>
-          <input
-            type="text"
-            name="title"
-            value={updatedTitle}
-            onChange={handleContentChange}
-            placeholder="Update title"
-          />
-          <textarea
-            name="content"
-            value={updatedContent}
-            onChange={handleContentChange}
-            placeholder="Update content"
-          />
-          <button onClick={handleUpdateClick}>Update</button>
-          <button onClick={handleCancelEdit}>Cancel</button>
-        </div>
-      ) : (
-        <div>
-          <h1>{props.title}</h1>
-          <p>{props.content}</p>
-          <button onClick={handleEditClick}>Edit</button>
-          <button onClick={handleDeleteClick}>
-            <DeleteIcon />
-          </button>
-        </div>
-      )}
+      <input
+        type="text"
+        className="editable-title"
+        value={updatedTitle}
+        onChange={handleTitleChange}
+        onBlur={handleBlur}
+        placeholder="Title"
+      />
+      <textarea
+        ref={textareaRef}
+        className="editable-content"
+        value={updatedContent}
+        onChange={handleContentChange}
+        onBlur={handleBlur}
+        placeholder="Take a note..."
+        rows={1}
+      />
+      <button onClick={handleDeleteClick}>
+        <DeleteIcon />
+      </button>
     </div>
   );
 }
